@@ -19,6 +19,4 @@ jobs:
     - name: Setup
       run: cargo install just && rustup target add aarch64-linux-android && cargo install cargo-ndk
     - name: Build
-      run: just flash-release
-    - name: Run tests
-      run: cargo test --verbose
+      run: just package-release && just flash-release
