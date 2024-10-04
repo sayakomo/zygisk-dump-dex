@@ -16,7 +16,13 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    - name: Setup
-      run: cargo install just && rustup target add aarch64-linux-android && cargo install cargo-ndk
+    - name: Install Just
+      run: cargo install just
+    - name: Set target
+      run: rustup target add aarch64-linux-android
+    - name: Cargo NDK
+      run: cargo install cargo-ndk
     - name: Build
-      run: just package-release && just flash-release
+      run: just package-release
+    - name: KernelSu
+      run: just flash-release
