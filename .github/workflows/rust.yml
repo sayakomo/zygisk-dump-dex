@@ -12,18 +12,18 @@ env:
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: debian-latest
 
     steps:
     - uses: actions/checkout@v4
     - name: Install Just
       run: cargo install just
     - name: install target
-      run: rustup target install aarch64-linux-android
-    - name: Set target
       run: rustup target add aarch64-linux-android
     - name: Cargo NDK
       run: cargo install cargo-ndk
+    - name: Set target
+      run: rustup target install aarch64-linux-android
     - name: Build
       run: just package-release
     - name: KernelSu
